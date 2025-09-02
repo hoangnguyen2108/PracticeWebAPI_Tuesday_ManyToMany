@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PracticeWebAPI_Tuesday.Configuration;
 using PracticeWebAPI_Tuesday.Data;
+using PracticeWebAPI_Tuesday.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MapperConfig));
-
+builder.Services.AddScoped<IAccountService, AccountService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
