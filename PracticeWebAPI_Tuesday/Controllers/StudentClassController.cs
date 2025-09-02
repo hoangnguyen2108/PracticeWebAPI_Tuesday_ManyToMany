@@ -76,17 +76,14 @@ namespace PracticeWebAPI_Tuesday.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put (int id, StudentCreateDTO studentClassDTO)
         {
-            var product = await _context.Students.FirstOrDefaultAsync(c => c.StudentId == id);
-            
+            var product = await _context.Students.FirstOrDefaultAsync(c => c.StudentId == id);     
             if (product == null)
             {
                 return BadRequest("Not Found");
             }
-
-
-            product.StudentName = studentClassDTO.StudentName;
-            product.DateOfBirth = studentClassDTO.DateOfBirth;
-
+            //product.StudentName = studentClassDTO.StudentName;
+            //product.DateOfBirth = studentClassDTO.DateOfBirth;
+            _mapper.Map(studentClassDTO, product);
             await _context.SaveChangesAsync();
 
             return NoContent();
