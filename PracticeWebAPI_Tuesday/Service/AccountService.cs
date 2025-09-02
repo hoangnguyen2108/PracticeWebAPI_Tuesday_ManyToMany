@@ -25,7 +25,7 @@ namespace PracticeWebAPI_Tuesday.Service
                 Email = userDTO.EmailAddress
             };
 
-            var updated = await _manager.AddPasswordAsync(model, userDTO.PassWord);
+            var updated = await _manager.CreateAsync(model, userDTO.PassWord);
 
             if (updated.Succeeded)
             {

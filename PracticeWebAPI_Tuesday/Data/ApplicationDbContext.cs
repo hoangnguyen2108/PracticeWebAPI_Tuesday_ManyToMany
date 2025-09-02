@@ -1,12 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
 using PracticeWebAPI_Tuesday.Configuration;
 using PracticeWebAPI_Tuesday.Model;
+using PracticeWebAPI_Tuesday.User;
 
 namespace PracticeWebAPI_Tuesday.Data
 {
-    public class ApplicationDbContext: DbContext
+    public class ApplicationDbContext: IdentityDbContext<ApiUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
         {
@@ -37,6 +40,7 @@ namespace PracticeWebAPI_Tuesday.Data
             modelBuilder.ApplyConfiguration(new EnrollmentSCConfig());
             modelBuilder.ApplyConfiguration(new StudentClassConfig());
             modelBuilder.ApplyConfiguration(new CourseConfig());
+            modelBuilder.ApplyConfiguration(new RoleConfig());
 
                 
         }
